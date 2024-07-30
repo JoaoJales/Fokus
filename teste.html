@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>teste</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        section{
+            background-color: rgba(0, 0, 0, 0.537);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 1000px;
+            gap: 30px;
+        }
+        button{
+            font-family: Montserrat;
+            font-size: 1.8rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 150%;
+    
+            padding: 0.8rem;
+            color: var(--color-secondary);
+   
+            cursor: pointer;
+             outline: inherit;          
+        }
+        .active{
+            background-color: red;
+
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <button class="foco">Foco</button>
+        <button class="curto">Descanso curto</button>
+        <button class="longo">Descanso Longo</button>
+    </section>
+
+    <script>
+        const focoBt = document.querySelector('.foco')
+        const curtoBt = document.querySelector('.curto')
+        const longoBt = document.querySelector('.longo')
+        const botoes = document.querySelectorAll('button')
+
+         focoBt.addEventListener('click', function(){
+            alterarContexto('foco')
+            focoBt.classList.add('active')
+        })
+
+        curtoBt.addEventListener('click', function(){
+            alterarContexto('curto')
+            curtoBt.classList.add('active')
+        })
+
+        longoBt.addEventListener('click', function(){
+            alterarContexto('longo')
+            longoBt.classList.add('active')
+        })
+
+        function alterarContexto(contexto){
+            botoes.forEach(function(contexto){
+                contexto.classList.remove('active')
+            })
+        }
+    </script>
+    
+</body>
+</html> 
