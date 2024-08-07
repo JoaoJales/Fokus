@@ -5,7 +5,6 @@ const curtoBt = document.querySelector('.app__card-button--curto')
 const longoBt = document.querySelector('.app__card-button--longo')
 const playBt = document.querySelector('#start-pause span')
 
-const displaytempo = document.getElementById('#timer')
 const img = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const checkMusica = document.querySelector('#alternar-musica')
@@ -31,7 +30,6 @@ focoBt.addEventListener('click', function(){
     tds = 1500
     alterarContexto('foco')
     focoBt.classList.add('active')
-    tds = 1500
 })
 
 curtoBt.addEventListener('click', function(){
@@ -77,10 +75,14 @@ function alterarContexto(contexto){
     }
 }
 
-
 const contagemRegressiva = ()=>{
     if (tds <= 0){
         const musica = new Audio('/sons/beep.mp3').play()
+        const focoAtivo = html.getAttribute('data-contexto') == 'foco'
+        if (focoAtivo) {
+            const evento = new CustomEvent('focoFinalizado')
+            document.dispatchEvent(evento)
+        } 
         zerar()
         return
     }
@@ -99,7 +101,7 @@ function iniciarOuPausar (){
         const musicaPlay = new Audio('/sons/play.wav').play()
     }
     intervaloId = setInterval(contagemRegressiva , 1000) //Criando o temporizardor
-    playBt.innerHTML = 'Pausar' 
+    playBt.textContent = 'Pausar' 
     icon.setAttribute('src', '/imagens/pause.png')
 }
 
